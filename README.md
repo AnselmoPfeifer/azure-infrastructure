@@ -43,7 +43,7 @@ The `first-setup` folder contains Terraform configurations that will:
 
 ```hcl
 module "vnet" {
-  source              = "./terraform-modules/azure/vnet"
+  source              = "https://github.com/org/terraform-modules/azure/vnet"
   name                = "my-vnet"
   location            = "eastus"
   resource_group_name = "my-resource-group"
@@ -62,7 +62,7 @@ module "vnet" {
 
 ```hcl
 module "vnet" {
-  source              = "./terraform-modules/azure/vnet"
+  source              = "https://github.com/org/terraform-modules/azure/vnet"
   name                = "my-vnet"
   location            = "eastus"
   resource_group_name = "my-resource-group"
@@ -78,7 +78,7 @@ module "vnet" {
 
 ```hcl
 module "vnet" {
-  source                 = "./terraform-modules/azure/vnet"
+  source                 = "https://github.com/org/terraform-modules/azure/vnet"
   name                   = "my-vnet"
   location               = "eastus"
   resource_group_name    = "my-resource-group"
