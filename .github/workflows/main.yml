@@ -19,6 +19,7 @@ env:
 jobs:
   check:
     runs-on: ubuntu-22.04
+    environment: dev
     name: Terraform Format Check
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +39,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-22.04
+    environment: dev
     name: Terraform Plan and Apply
     needs: check
     steps:
