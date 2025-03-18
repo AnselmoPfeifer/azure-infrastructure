@@ -1,0 +1,11 @@
+project: pfeifer
+region: westeurope
+
+vnet:
+  address_space:
+    - 10.128.0.0/23
+  subnets:
+    - name: subnet-1
+      address_prefixes: ["10.128.0.0/24"]
+    - name: subnet-2
+      address_prefixes: ["10.128.1.0/24"]
