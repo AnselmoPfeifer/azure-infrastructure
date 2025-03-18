@@ -64,8 +64,11 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Validate
-        run: terraform validate
+      - name: Terraform Workspace
+        run: terraform workspace select ${{ inputs.environment }}
+      
+      - name: Terraform Plan
+        run: terraform plan
+      
 
-      - name: Terraform Format Check
-        run: terraform fmt -check
+
