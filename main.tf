@@ -1,5 +1,5 @@
 module "resource_group" {
-  source = "git@github.com:AnselmoPfeifer/terraform-modules.git//azure/rg?ref=main"
+  source = "git::https://github.com/AnselmoPfeifer/terraform-modules.git//azure/rg?ref=main"
 
   resource_group_name     = "rg-${local.config.project}-${local.config.environment}"
   resource_group_location = local.config.region
@@ -7,7 +7,7 @@ module "resource_group" {
 }
 
 module "virtual_network" {
-  source     = "git@github.com:AnselmoPfeifer/terraform-modules.git//azure/vnet?ref=main"
+  source     = "git::https://github.com/AnselmoPfeifer/terraform-modules.git//azure/vnet?ref=main"
   depends_on = [module.resource_group]
 
   resource_group_name = module.resource_group.name

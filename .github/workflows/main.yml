@@ -39,6 +39,7 @@ jobs:
   deploy:
     runs-on: ubuntu-22.04
     name: Terraform Plan and Apply
+    needs: check
     steps:
       - uses: actions/checkout@v4
 
