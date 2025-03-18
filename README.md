@@ -2,8 +2,6 @@
 
 This project contains Terraform configurations for managing Azure infrastructure, with a focus on networking components and security features.
 
-[![Azure Infrastructure](https://github.com/AnselmoPfeifer/azure-infrastructure/actions/workflows/main.yml/badge.svg)](https://github.com/AnselmoPfeifer/azure-infrastructure/actions/workflows/main.yml)
-
 ## First Setup
 
 Before deploying the main infrastructure, you need to set up remote state storage in Azure. This setup is crucial for the following reasons:
