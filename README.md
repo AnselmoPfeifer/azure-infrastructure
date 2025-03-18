@@ -1,8 +1,8 @@
 # Azure Infrastructure as Code
 
-[![Azure Infrastructure](https://github.com/AnselmoPfeifer/azure-infrastructure/actions/workflows/main.yml/badge.svg)](https://github.com/AnselmoPfeifer/azure-infrastructure/actions/workflows/main.yml)
-
 This project contains Terraform configurations for managing Azure infrastructure, with a focus on networking components and security features.
+
+[![Azure Infrastructure](https://github.com/AnselmoPfeifer/azure-infrastructure/actions/workflows/main.yml/badge.svg)](https://github.com/AnselmoPfeifer/azure-infrastructure/actions/workflows/main.yml)
 
 ## First Setup
 
