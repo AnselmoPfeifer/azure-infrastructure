@@ -4,7 +4,7 @@ name: Azure Infrastructure
 on:
   workflow_dispatch:
     inputs:
-     environment:
+      environment:
         type: environment
         description: Select the environment
 
@@ -18,7 +18,7 @@ env:
 jobs:
   check:
     runs-on: ubuntu-22.04
-    environment: 
+    environment:
       name: ${{ inputs.environment }}
     name: Terraform Format Check
     steps:
@@ -31,10 +31,11 @@ jobs:
       - name: Terraform Format Check
         run: terraform fmt -check
 
-  deploy:
+  dev:
     runs-on: ubuntu-22.04
-    environment: 
-      name: ${{ inputs.environment }}
+    if: github.ref == 'refs/heads/main' && inputs.environment == 'dev'
+    environment:
+      name: dev
     name: Terraform Plan and Apply
     needs: check
     steps:
@@ -44,20 +45,44 @@ jobs:
         with:
           terraform_version: ${{ env.TF_VERSION }}
 
-# TODO
-      # - name: Azure Login
-      #   uses: azure/login@v2
-      #   with:
-      #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          
-      # - name: Terraform Init
-      #   run: terraform init
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      # - name: Terraform Workspace
-      #   run: terraform workspace select ${{ inputs.environment }}
-      
-      # - name: Terraform Plan
-      #   run: terraform plan
-      
+      - name: Terraform Init
+        run: terraform init
 
+      - name: Terraform Workspace
+        run: terraform workspace select ${{ inputs.environment }}
 
+      - name: Terraform Plan
+        run: terraform apply
+
+  prod:
+    runs-on: ubuntu-22.04
+    if: github.ref == 'refs/heads/main' && inputs.environment == 'prod'
+    needs: dev
+    environment:
+      name: prod
+    name: Terraform Plan and Apply
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Workspace
+        run: terraform workspace select ${{ inputs.environment }}
+
+      - name: Terraform Plan
+        run: terraform apply
