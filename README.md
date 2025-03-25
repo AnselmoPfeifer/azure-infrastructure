@@ -92,7 +92,9 @@ module "vnet" {
 - Terraform >= 1.0
 - Azure CLI
 - Azure Subscription
-- Proper Azure credentials configured
+- Proper Azure credentials configured: `export TF_VAR_subscription_id=xyz`
+- Create / Select terraform workspace: `terraform workspace new dev`
+- Plan / Apply works as normal (terraform plan / apply), we Don't need to pass the subscription_id on command line.
 
 ## Best Practices
 
